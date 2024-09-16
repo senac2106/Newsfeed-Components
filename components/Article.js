@@ -102,15 +102,53 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
-
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
-  This listener should toggle the class 'article-open' on div.article.
-
-  Step 3: Don't forget to return something from your function!
-
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
-
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
-  Refresh the page to see the new article.
 */
+
+  //Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+  //This listener should toggle the class 'article-open' on div.article.
+
+  //Step 3: Don't forget to return something from your function!
+
+  //Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
+  //to create a div.article element and append it to the DOM inside div.articles (see index.html).
+
+  //Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+  //Refresh the page to see the new article.
+
+  function articleMaker ({title, date, firstParagraph, secondParagraph, thirdParagraph }){
+    //create nod
+    const firstDiv = document.createElement('div')
+    const subTitle = document.createElement('h2')
+    const text = document.createElement('p')
+    const space1 = document.createElement('p')
+    const space2 = document.createElement('p')
+    const space3 = document.createElement('p')
+    const span = document.createElement('span')
+    //append to parents
+  firstDiv.appendChild(subTitle)
+  firstDiv.appendChild(text)
+  firstDiv.appendChild(space1)
+  firstDiv.appendChild(space2)
+  firstDiv.appendChild(space3)
+  firstDiv.appendChild(span)
+  
+  //add clases
+  firstDiv.classList.add('article')
+  text.classList.add('date')
+  span.classList.add('expandButton')
+   // set the text content
+   subTitle.textContent= title;
+   text.textContent = date;
+   space1.textContent = firstParagraph;
+   space2.textContent = secondParagraph;
+   space3.textContent = thirdParagraph;
+  
+   //event listener
+   span.addEventListener('click', (event) =>{
+    firstDiv.classList.toggle('article.open')
+  })
+  return firstDiv;
+  };
+  data.forEach((obj) =>{
+    document.querySelector('.articles').appendChild(articleMaker(obj))
+  });
